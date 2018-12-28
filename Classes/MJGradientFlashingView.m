@@ -10,7 +10,12 @@
 
 @interface MJGradientFlashingView ()
 @property (nonatomic, strong) CADisplayLink *displaylink;///< 计时器
+@property (nonatomic, strong) NSArray *completeColors;///< 一整个循环颜色数组
+@property (nonatomic, assign) NSInteger startIndex;///< 当前取色数组起始位置
 @end
+
+// 帧数
+static NSInteger frames = 60;
 
 @implementation MJGradientFlashingView
 #pragma mark - Life Circle
@@ -24,16 +29,66 @@
 - (CADisplayLink *)createDisplaylink
 {
     CADisplayLink *displaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(startFlash)];
-    // 每秒30帧
+    // 每秒帧数
     if (@available(iOS 10.0, *)) {
-        displaylink.preferredFramesPerSecond = 30;
+        displaylink.preferredFramesPerSecond = frames;
     } else {
 #pragma clang diagnostic push
 #pragma clang diagnostic ignored "-Wdeprecated-declarations"
-        displaylink.frameInterval = 30;
+        displaylink.frameInterval = frames;
 #pragma clang diagnostic pop
     }
     return displaylink;
+}
+
+#pragma mark - Set & Get
+- (void)setColors:(NSArray<UIColor *> *)colors
+{
+    _colors = colors;
+    [self configCompleteColors];
+}
+
+- (void)setSpeed:(CGFloat)speed
+{
+    _speed = speed;
+    [self configCompleteColors];
+}
+
+/// 计算一整个循环需要的颜色数组
+- (void)configCompleteColors
+{
+    if (_colors.count > 1 && _speed != 0) {
+        /*
+         计算一整个循环需要的颜色数组
+         这里是是因为:
+         如果及时计算每个时刻需要的颜色，会根据每个颜色的地址算位置，如果有相同地址的颜色传入，那么会计算错误，
+         所以提前算好一整个颜色循环数组，直接从数组中取颜色，而不用及时计算
+         */
+        NSMutableArray *arrCompelet = [NSMutableArray arrayWithCapacity:_colors.count * 3];
+        if (_speed < 0) {
+            // 头
+            [arrCompelet addObject:_colors[1]];
+        }
+        // 正序完整数组
+        [arrCompelet addObjectsFromArray:_colors];
+        // 逆序去头尾数组
+        NSMutableArray *arrReverse = [_colors.reverseObjectEnumerator.allObjects mutableCopy];
+        [arrReverse removeObjectAtIndex:0];
+        [arrReverse removeLastObject];
+        [arrCompelet addObjectsFromArray:arrReverse];
+        // 正序完整数组
+        [arrCompelet addObjectsFromArray:_colors];
+        if (_speed > 0) {
+            // 尾
+            [arrCompelet addObject:_colors[_colors.count - 2]];
+        }
+        
+        if (_speed < 0) {
+            _completeColors = [arrCompelet copy];
+        } else {
+            _completeColors = [arrCompelet.reverseObjectEnumerator.allObjects copy];
+        }
+    }
 }
 
 #pragma mark - Animation
@@ -55,42 +110,50 @@
 }
 
 #pragma mark - Action
+/// 每帧动画
 - (void)startFlash
 {
-    CGFloat offset = _speed / 30.0;   // 30为上面计时器的帧数
-
-    NSArray *colors = nil;// 颜色数组
-
-    CGFloat centerPoint = 0.0;  // 可视范围颜色位置
-
-    if (self.arrColors.count > 1) {
+    if (_colors.count < 2) {
+        return;
+    }
+    
+    CGFloat offset = _speed / frames;   // 每帧偏移量
+    CGFloat space = 1.0 / (_colors.count - 1); // 每个颜色的间距
+    
+    NSInteger arrCount = _colors.count + 2; // 颜色数组长度
+    CGFloat firstPoint = 0.0;  // 起始位置
+    
+    if (self.arrColors.count > 0) {
         // 动画中
-        UIColor *colorOut = self.arrColors[0];
-        UIColor *colorIn = self.arrColors[1];
-        centerPoint = [self.arrLocations[1] floatValue];
-
-        centerPoint += offset;
-
-        if (centerPoint > 1) {
-            centerPoint -= 1;
-            colors = @[colorIn, colorOut, colorIn];
-        } else if (centerPoint < 0) {
-            centerPoint += 1;
-            colors = @[colorIn, colorOut, colorIn];
+        firstPoint = [self.arrLocations[1] doubleValue];
+        
+        if (fabs(firstPoint) > space) {
+            // 移动后超出范围
+            firstPoint += space * (_speed > 0? -1: 1);
+            
+            // 颜色数组
+            _startIndex += 1;
+            if (_startIndex + arrCount > _completeColors.count) {
+                _startIndex = 0;
+            }
+            
+            NSArray *subArr = [_completeColors subarrayWithRange:NSMakeRange(_startIndex, arrCount)];
+            self.arrColors = _speed < 0? subArr: subArr.reverseObjectEnumerator.allObjects;
         } else {
-            colors = self.arrColors;
+            firstPoint += offset;
         }
     } else {
         // 初始
-        colors = @[self.endColor, self.beginColor, self.endColor];
-        centerPoint = 0.5;
+        NSArray *subArr = [_completeColors subarrayWithRange:NSMakeRange(_startIndex, arrCount)];
+        self.arrColors = _speed < 0? subArr: subArr.reverseObjectEnumerator.allObjects;
     }
 
-    self.arrLocations = @[@(centerPoint - 1),
-                          @(centerPoint),
-                          @(centerPoint + 1)];
-    
-    self.arrColors = colors;
+    // 颜色对应位置
+    NSMutableArray *muPoints = [NSMutableArray arrayWithCapacity:arrCount];
+    for (NSInteger i = 0; i < arrCount; i++) {
+        [muPoints addObject:[NSNumber numberWithFloat:firstPoint + (i - 1) * space]];
+    }
+    self.arrLocations = muPoints;
     
     [self configColors];
 }

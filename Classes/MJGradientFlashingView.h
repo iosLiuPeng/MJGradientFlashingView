@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface MJGradientFlashingView : MJGradientView
 @property (nonatomic, assign) IBInspectable CGFloat speed;///< 速度 (每秒移动的百分比距离，例如 0.8，正数向右，负数向左)
+@property (nonatomic, strong) NSArray<UIColor *> *colors;///< 颜色数组（至少需要两个颜色）
 
 /// 开始动画
 - (void)startAnimation;

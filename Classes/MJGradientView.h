@@ -6,10 +6,10 @@
 //  Copyright © 2018年 musjoy. All rights reserved.
 //  渐变色视图
 
-#import "IBView.h"
+#import <UIKit/UIKit.h>
 
 IB_DESIGNABLE
-@interface MJGradientView : IBView
+@interface MJGradientView : UIView
 @property (nonatomic, strong) IBInspectable UIColor *beginColor;///< 开始颜色
 @property (nonatomic, strong) IBInspectable UIColor *endColor;  ///< 结束颜色
 @property (nonatomic, assign) IBInspectable NSInteger angle;    ///< 角度（默认0°，水平从左到右，角度变大时按逆时针方向旋转）

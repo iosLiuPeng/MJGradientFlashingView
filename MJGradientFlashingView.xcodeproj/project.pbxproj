@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4629264F21D50DF0002217F2 /* UIColor+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = 4629264E21D50DF0002217F2 /* UIColor+Utils.m */; };
 		4664716221D336B400448261 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 4664716121D336B400448261 /* AppDelegate.m */; };
 		4664716521D336B400448261 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4664716421D336B400448261 /* ViewController.m */; };
 		4664716821D336B400448261 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4664716621D336B400448261 /* Main.storyboard */; };
@@ -18,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4629264D21D50DEF002217F2 /* UIColor+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Utils.h"; sourceTree = "<group>"; };
+		4629264E21D50DF0002217F2 /* UIColor+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Utils.m"; sourceTree = "<group>"; };
 		4664715D21D336B400448261 /* MJGradientFlashingView.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MJGradientFlashingView.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4664716021D336B400448261 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		4664716121D336B400448261 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -68,6 +71,8 @@
 				4664717621D3371D00448261 /* Classes */,
 				4664716021D336B400448261 /* AppDelegate.h */,
 				4664716121D336B400448261 /* AppDelegate.m */,
+				4629264D21D50DEF002217F2 /* UIColor+Utils.h */,
+				4629264E21D50DF0002217F2 /* UIColor+Utils.m */,
 				4664716321D336B400448261 /* ViewController.h */,
 				4664716421D336B400448261 /* ViewController.m */,
 				4664716621D336B400448261 /* Main.storyboard */,
@@ -168,6 +173,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4664716521D336B400448261 /* ViewController.m in Sources */,
+				4629264F21D50DF0002217F2 /* UIColor+Utils.m in Sources */,
 				4664717021D336B700448261 /* main.m in Sources */,
 				4664716221D336B400448261 /* AppDelegate.m in Sources */,
 				4664717D21D3375400448261 /* MJGradientView.m in Sources */,

@@ -19,7 +19,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="v5c-cI-bDX" customClass="MJGradientFlashingView">
-                                <rect key="frame" x="37.5" y="301" width="300" height="65"/>
+                                <rect key="frame" x="37.5" y="134.5" width="300" height="64.5"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="color" keyPath="beginColor">
@@ -36,18 +36,82 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="p41-2C-4QX" customClass="MJGradientFlashingView">
+                                <rect key="frame" x="37.5" y="301" width="300" height="65"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="beginColor">
+                                        <color key="value" red="0.73227161169052124" green="0.35333794355392456" blue="0.61568570137023926" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                        <integer key="value" value="0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uki-Ee-7aH">
+                                <rect key="frame" x="37.5" y="468" width="300" height="64.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LabelLabelLabel" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lYQ-Ge-rDg">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="64.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTa-fs-QvC" customClass="MJGradientFlashingView">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="64.5"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                                <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="angle">
+                                                <integer key="value" value="10"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="beginColor">
+                                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="lYQ-Ge-rDg" firstAttribute="leading" secondItem="Uki-Ee-7aH" secondAttribute="leading" id="Axh-Pq-Qyz"/>
+                                    <constraint firstItem="MTa-fs-QvC" firstAttribute="leading" secondItem="Uki-Ee-7aH" secondAttribute="leading" id="DRg-R1-Ivi"/>
+                                    <constraint firstItem="MTa-fs-QvC" firstAttribute="top" secondItem="Uki-Ee-7aH" secondAttribute="top" id="VZt-mL-Ce2"/>
+                                    <constraint firstItem="lYQ-Ge-rDg" firstAttribute="top" secondItem="Uki-Ee-7aH" secondAttribute="top" id="WCm-pB-Qso"/>
+                                    <constraint firstAttribute="trailing" secondItem="MTa-fs-QvC" secondAttribute="trailing" id="Xlz-oh-6jX"/>
+                                    <constraint firstAttribute="bottom" secondItem="MTa-fs-QvC" secondAttribute="bottom" id="ged-fZ-D3z"/>
+                                    <constraint firstAttribute="bottom" secondItem="lYQ-Ge-rDg" secondAttribute="bottom" id="ic0-Mr-cl1"/>
+                                    <constraint firstAttribute="trailing" secondItem="lYQ-Ge-rDg" secondAttribute="trailing" id="ujW-to-uaD"/>
+                                </constraints>
+                            </view>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.86274509803921573" green="0.86274509803921573" blue="0.86274509803921573" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="p41-2C-4QX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="1N9-xU-fZz"/>
+                            <constraint firstItem="p41-2C-4QX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="5Zp-eZ-uVA"/>
                             <constraint firstItem="v5c-cI-bDX" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.1" id="J1S-oP-Rgi"/>
                             <constraint firstItem="v5c-cI-bDX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LZc-Sl-jnP"/>
+                            <constraint firstItem="Uki-Ee-7aH" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qhf-w9-xT3"/>
+                            <constraint firstItem="Uki-Ee-7aH" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.1" id="Qz5-1L-0oW"/>
+                            <constraint firstItem="Uki-Ee-7aH" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="1.5" id="VI5-Ie-2Fp"/>
+                            <constraint firstItem="Uki-Ee-7aH" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="ZvO-i6-0oh"/>
                             <constraint firstItem="v5c-cI-bDX" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="imC-oW-aqS"/>
-                            <constraint firstItem="v5c-cI-bDX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sYP-WJ-A2q"/>
+                            <constraint firstItem="p41-2C-4QX" firstAttribute="height" secondItem="6Tk-OE-BBY" secondAttribute="height" multiplier="0.1" id="p10-eo-OKa"/>
+                            <constraint firstItem="v5c-cI-bDX" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" multiplier="0.5" id="sYP-WJ-A2q"/>
+                            <constraint firstItem="p41-2C-4QX" firstAttribute="width" secondItem="6Tk-OE-BBY" secondAttribute="width" multiplier="0.8" id="t1o-1D-lC5"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
                         <outlet property="flashView" destination="v5c-cI-bDX" id="MbZ-8y-Ddd"/>
+                        <outlet property="flashView2" destination="p41-2C-4QX" id="Zth-Q7-i4G"/>
+                        <outlet property="flashView3" destination="MTa-fs-QvC" id="YdW-uI-SGx"/>
+                        <outlet property="lable" destination="lYQ-Ge-rDg" id="H1J-n8-bHn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
