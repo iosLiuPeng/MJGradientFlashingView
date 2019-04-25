@@ -19,6 +19,16 @@ static NSInteger frames = 60;
 
 @implementation MJGradientFlashingView
 #pragma mark - Life Circle
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    if (_autoStart) {
+        self.colors = @[self.beginColor, self.endColor];
+        [self startAnimation];
+    }
+}
+
 - (void)dealloc
 {
     [self.displaylink invalidate];
